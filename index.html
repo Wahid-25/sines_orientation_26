@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071018">
+<title>SINES Orientation '26</title>
+<style>
+:root{
+  --bg:#071018;--panel:#0e2029;--panel2:#112933;--line:#2d4e5a;
+  --text:#f5f1d8;--muted:#b7c7c9;--cyan:#63e3dc;--yellow:#f3da67;
+  --red:#ef4f59;--green:#70d888;--shadow:0 18px 50px rgba(0,0,0,.35)
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+radial-gradient(circle at 15% 10%,rgba(86,158,171,.15),transparent 25%),
+radial-gradient(circle at 85% 20%,rgba(68,80,168,.14),transparent 28%),#071018;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;background-image:
+radial-gradient(circle,rgba(255,255,255,.55) 0 1px,transparent 1.3px),
+radial-gradient(circle,rgba(255,255,255,.23) 0 1px,transparent 1.3px);
+background-size:88px 88px,132px 132px;animation:stars 38s linear infinite}
+@keyframes stars{to{background-position:0 180px,50px 230px}}
+.wrap{width:min(1180px,92vw);margin:auto}.pixel{font-family:"Courier New",monospace;letter-spacing:.08em;text-transform:uppercase}
+a{color:inherit}.nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(5,14,20,.84);backdrop-filter:blur(15px);border-bottom:1px solid rgba(116,202,205,.15)}
+.navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900}.crewmark{width:30px;height:29px;border-radius:45% 45% 38% 38%;background:var(--red);border:3px solid #03080b;position:relative}
+.crewmark:after{content:"";position:absolute;right:-8px;top:5px;width:18px;height:10px;background:#c4f1f3;border:3px solid #03080b;border-radius:8px}
+.navlinks{display:flex;gap:5px}.navlinks a{text-decoration:none;padding:9px 10px;border-radius:10px;color:#d9e6e4;font-size:.9rem}.navlinks a:hover{background:#132a34}
+.menubtn{display:none;background:#10252f;color:#fff;border:1px solid #2c5260;border-radius:10px;padding:9px 12px}
+.hero{min-height:100vh;padding-top:72px;display:grid;place-items:center}.hero-card{width:min(1280px,96vw);min-height:78vh;border-radius:28px;overflow:hidden;position:relative;display:flex;align-items:flex-end;border:1px solid rgba(243,218,103,.25);box-shadow:0 35px 90px rgba(0,0,0,.48)}
+.hero-card:before{content:"";position:absolute;inset:0;background:
+linear-gradient(180deg,rgba(3,8,11,.05) 20%,rgba(3,8,11,.52) 63%,rgba(3,8,11,.95) 100%),
+url("assets/sines-orientation-26-poster.jpeg") center/cover no-repeat}
+.hero-card:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.02) 4px);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:760px;padding:clamp(24px,4.5vw,58px)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(243,218,103,.42);background:rgba(5,14,20,.62);color:#f8e996;font-weight:800}
+.hero h1{font-size:clamp(2.2rem,5vw,5rem);line-height:.98;margin:18px 0 14px;text-shadow:0 10px 30px rgba(0,0,0,.65)}
+.hero p{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.75;color:#ecf1ec}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:13px;padding:13px 18px;font-weight:900;text-decoration:none;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px)}.primary{background:var(--yellow);color:#152027}.secondary{background:rgba(15,34,44,.88);border:1px solid #365a67;color:#fff}
+section{padding:86px 0}.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}.head h2{font-size:clamp(2rem,4vw,3.4rem);margin:0}.head p{max-width:570px;color:var(--muted);line-height:1.7;margin:0}
+.kicker{color:var(--cyan);font-size:.84rem;font-weight:900;margin-bottom:7px}.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:linear-gradient(180deg,rgba(17,38,48,.95),rgba(10,24,32,.97));border:1px solid rgba(103,176,186,.22);border-radius:22px;padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--cyan),transparent 70%);opacity:.75}.card h3{margin:7px 0 10px}.card p,.card li{color:var(--muted);line-height:1.65}.icon{font-size:1.6rem}.tag{display:inline-block;padding:6px 9px;border-radius:999px;background:#17343f;color:#d6f5f1;border:1px solid #315a67;font-size:.75rem}
+.station{display:grid;grid-template-columns:1.06fr .94fr;gap:22px}.feature{min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(180deg,rgba(8,18,24,.18),rgba(8,18,24,.94)),radial-gradient(circle at 25% 15%,rgba(99,227,220,.18),transparent 30%),#112832}.feature h3{font-size:2rem}
+.timeline{position:relative}.timeline:before{content:"";position:absolute;left:19px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--cyan),#304c56)}.t{position:relative;padding:0 0 28px 62px}.dot{position:absolute;left:8px;top:4px;width:24px;height:24px;border-radius:7px;background:#0d252f;border:4px solid var(--cyan)}.year{font-weight:900;color:var(--yellow)}.t h3{margin:3px 0 4px}.t p{margin:0;color:var(--muted);line-height:1.6}
+.schedule{display:grid;grid-template-columns:220px 1fr;gap:1px;border-radius:15px;overflow:hidden}.slot{display:contents}.slot>div{padding:16px 18px;background:#0b1c24;border-bottom:1px solid #203c47}.time{color:var(--yellow);font-weight:900}.event{font-weight:800}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.countbox{background:#0a1a22;border:1px solid #294b58;border-radius:18px;padding:22px;text-align:center}.countbox b{display:block;color:var(--yellow);font-size:clamp(1.8rem,4vw,3.2rem)}.countbox span{font-size:.78rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.tasks{display:grid;grid-template-columns:1fr 320px;gap:22px}.tasklist{display:grid;gap:10px}.task{display:flex;align-items:center;gap:12px;padding:15px 16px;background:#0a1a22;border:1px solid #254550;border-radius:14px;cursor:pointer;transition:.18s}.task:hover{transform:translateX(4px)}.task input{width:19px;height:19px;accent-color:var(--green)}.task.done{opacity:.55;text-decoration:line-through}
+.ring{--p:0;width:180px;height:180px;border-radius:50%;margin:12px auto 18px;display:grid;place-items:center;background:conic-gradient(var(--green) calc(var(--p)*1%),#19313a 0);position:relative}.ring:before{content:"";position:absolute;width:136px;height:136px;border-radius:50%;background:#0a1820}.ring strong{position:relative;font-size:2rem}
+.placeholder{min-height:215px;border:1px dashed #456773;border-radius:18px;display:grid;place-items:center;text-align:center;padding:22px;background:linear-gradient(135deg,rgba(44,82,91,.16),rgba(21,39,49,.08))}.placeholder .big{font-size:2.1rem}
+.modal{position:fixed;inset:0;background:rgba(0,7,10,.84);z-index:100;display:none;place-items:center;padding:20px;backdrop-filter:blur(9px)}.modal.open{display:grid}.modalbox{width:min(620px,100%);background:#10242e;border:1px solid #365d69;border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.55)}.close{float:right;border:0;background:none;color:white;font-size:1.6rem;cursor:pointer}
+footer{padding:48px 0 60px;border-top:1px solid rgba(87,141,151,.2);background:#061017}.footer{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}.footer p{color:var(--muted)}.status{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:#0d2b22;border:1px solid #285342;color:#c4ebcd;font-size:.82rem}.status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:900px){.navlinks{display:none;position:absolute;top:72px;left:4vw;right:4vw;flex-direction:column;background:#0c1c24;border:1px solid #2a4c58;border-radius:15px;padding:10px}.navlinks.open{display:flex}.menubtn{display:block}.station,.tasks{grid-template-columns:1fr}.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.schedule{grid-template-columns:130px 1fr}}
+@media(max-width:640px){section{padding:68px 0}.hero-card{width:100%;border-radius:0;min-height:calc(100vh - 72px)}.hero-card:before{background-position:43% center}.hero-content{padding:24px 20px 38px}.head{display:block}.head p{margin-top:12px}.g2,.g3,.g4{grid-template-columns:1fr}.countdown{grid-template-columns:repeat(2,1fr)}.footer{display:block}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap navin">
+    <a href="#home" class="brand pixel"><span class="crewmark"></span>SINES // ORIENTATION 26</a>
+    <button class="menubtn" id="menu">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">SINES</a><a href="#history">History</a><a href="#orientation">Orientation</a>
+      <a href="#tasks">Tasks</a><a href="#media">Media</a><a href="#merch">Merch</a><a href="#support">Support</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-card">
+    <div class="hero-content">
+      <span class="badge pixel">● Incoming transmission: Freshers</span>
+      <h1 class="pixel">Welcome to SINES Orientation '26</h1>
+      <p>Welcome, Freshers! You have successfully arrived at SINES Station. Your journey begins here. Explore your new academic home, meet the people who will guide you, and discover everything you need before beginning your Bioinformatics journey at SINES.</p>
+      <div class="actions">
+        <a class="btn primary pixel" href="#about">Start Exploring →</a>
+        <button class="btn secondary" onclick="openModal('mission')">View Mission Brief</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="about">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Station briefing</div><h2>Welcome to Your New Academic Home</h2></div><p>You have taken the first step into SINES — a place where biology meets technology, ideas turn into innovation, and curiosity drives discovery.</p></div>
+  <div class="station">
+    <article class="card feature reveal"><span class="tag pixel">Crew message</span><h3>The next four years will bring discoveries, challenges, friendships, and unforgettable experiences.</h3><p>Before your first class begins, explore everything that awaits you at SINES and prepare for the journey ahead.</p></article>
+    <div class="grid g2">
+      <article class="card reveal"><div class="icon">🧬</div><h3>Interdisciplinary Approach</h3><p>Bringing together biology, computing, engineering, and sciences to create new possibilities.</p></article>
+      <article class="card reveal"><div class="icon">🔬</div><h3>Research-Driven Environment</h3><p>Exploration, experimentation, and innovation shape the student experience.</p></article>
+      <article class="card reveal"><div class="icon">💡</div><h3>Innovation & Impact</h3><p>Encouraging ideas that move beyond classrooms and contribute to real-world solutions.</p></article>
+      <article class="card reveal"><div class="icon">🧑‍🚀</div><h3>Diverse Community</h3><p>A place where different perspectives, backgrounds, and ideas come together.</p></article>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:22px">
+    <article class="card reveal"><span class="tag pixel">Vision</span><h3>Future-driven interdisciplinary learning</h3><p>To create a future-driven environment where interdisciplinary education and research empower students to develop innovative solutions for society.</p></article>
+    <article class="card reveal"><span class="tag pixel">Mission</span><h3>Education, research and collaboration</h3><p>To provide students with quality education, advanced research opportunities, and a collaborative environment that develops technical skills, creativity, and problem-solving abilities.</p></article>
+  </div>
+</div>
+</section>
+
+<section id="history">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Navigation log</div><h2>From Research Centre to Innovation Hub</h2></div><p>SINES has evolved with changing technologies and global challenges into a community of students, researchers, and educators working toward innovation and meaningful impact.</p></div>
+  <article class="card reveal"><div class="timeline">
+    <div class="t"><span class="dot"></span><div class="year">2007</div><h3>The Beginning</h3><p>RCMS was established. A vision was created to bring modelling, simulation, and interdisciplinary research together under one platform.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2008</div><h3>First Expansion</h3><p>Computational Sciences and Engineering takes shape, opening opportunities for advanced computational research.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2010</div><h3>New Frontiers</h3><p>Bioinformatics enters the ecosystem, connecting computational approaches with biological sciences.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2012</div><h3>Powering Innovation</h3><p>High Performance Computing Facility established to strengthen research, simulation, and data-driven exploration.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2013</div><h3>Building Expertise</h3><p>Systems Engineering joins the journey, introducing a new dimension of interdisciplinary engineering.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2020</div><h3>Accelerating Discovery</h3><p>HPC Facility upgraded to support large-scale research and innovation.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2022</div><h3>A New Identity</h3><p>RCMS becomes SINES, marking a new era of interdisciplinary education, research, and collaboration.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2023</div><h3>The Bioinformatics Era</h3><p>BS and PhD Bioinformatics introduced.</p></div>
+    <div class="t"><span class="dot"></span><div class="year">2025</div><h3>The Future of Discovery</h3><p>SINES continues to bridge biology, computing, and engineering by preparing students to explore emerging technologies and solve future challenges.</p></div>
+  </div></article>
+</div>
+</section>
+
+<section id="orientation">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Mission day</div><h2>Your First Day Starts Here</h2></div><p>Everything you need before stepping into SINES — orientation schedule, important details, and everything prepared to welcome you.</p></div>
+  <div class="grid g3" style="margin-bottom:22px">
+    <article class="card reveal"><span class="tag pixel">Date</span><h3>September XX, 2026</h3><p>Final date to be confirmed.</p></article>
+    <article class="card reveal"><span class="tag pixel">Time</span><h3>09:00 AM onwards</h3><p>Orientation day begins with registration and arrival.</p></article>
+    <article class="card reveal"><span class="tag pixel">Location</span><h3>SINES Building</h3><p>NUST Campus</p></article>
+  </div>
+  <article class="card reveal">
+    <h3 class="pixel">Orientation Schedule</h3>
+    <div class="schedule">
+      <div class="slot"><div class="time">09:00 AM</div><div class="event">Registration and Arrival</div></div>
+      <div class="slot"><div class="time">10:00 AM</div><div class="event">Welcome Session</div></div>
+      <div class="slot"><div class="time">10:30 AM</div><div class="event">Introduction to SINES</div></div>
+      <div class="slot"><div class="time">11:30 AM</div><div class="event">Program Introduction</div></div>
+      <div class="slot"><div class="time">12:30 PM</div><div class="event">Campus Tour</div></div>
+      <div class="slot"><div class="time">01:30 PM</div><div class="event">Lunch and Interaction</div></div>
+      <div class="slot"><div class="time">02:30 PM</div><div class="event">Student Activities</div></div>
+      <div class="slot"><div class="time">03:30 PM</div><div class="event">Closing Session</div></div>
+    </div>
+  </article>
+  <div class="grid g2" style="margin-top:22px">
+    <article class="card reveal"><h3>Coming Soon</h3><ul><li>Welcome Session</li><li>Introduction to SINES</li><li>Program Introduction</li><li>Meet the Community</li><li>Campus Exploration</li><li>Interactive Activities</li></ul></article>
+    <article class="card reveal"><h3>Bring Along</h3><ul><li>CNIC/B-Form Copy</li><li>Admission Documents</li><li>A notebook or note-taking device</li><li>Your curiosity and questions</li><li>Excitement for new beginnings</li><li>A friendly smile</li><li>Your camera to capture your first SINES memories</li></ul></article>
+  </div>
+</div>
+</section>
+
+<section id="countdown">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Launch timer</div><h2>The Countdown Begins</h2></div><p>The exact date is still listed as September XX, 2026, so the live timer is ready but intentionally inactive until the final date is confirmed.</p></div>
+  <div class="countdown reveal">
+    <div class="countbox"><b id="days">--</b><span>Days</span></div><div class="countbox"><b id="hours">--</b><span>Hours</span></div>
+    <div class="countbox"><b id="minutes">--</b><span>Minutes</span></div><div class="countbox"><b id="seconds">--</b><span>Seconds</span></div>
+  </div>
+  <div class="actions reveal"><button class="btn secondary" onclick="openModal('date')">Countdown setup</button></div>
+</div>
+</section>
+
+<section id="tasks">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Crew task board</div><h2>Prepare for Your First Day</h2></div><p>Tap the tasks as you complete them. Progress stays saved on your own device.</p></div>
+  <div class="tasks">
+    <article class="card reveal"><div class="tasklist" id="tasklist">
+      <label class="task"><input type="checkbox"> Check your admission documents</label>
+      <label class="task"><input type="checkbox"> Keep your CNIC/B-Form copy ready</label>
+      <label class="task"><input type="checkbox"> Pack a notebook or note-taking device</label>
+      <label class="task"><input type="checkbox"> Review the orientation schedule</label>
+      <label class="task"><input type="checkbox"> Prepare your questions</label>
+      <label class="task"><input type="checkbox"> Charge your phone/camera</label>
+    </div></article>
+    <aside class="card reveal" style="text-align:center"><span class="tag pixel">Crew readiness</span><div class="ring" id="ring"><strong id="pct">0%</strong></div><p id="msg">Complete your tasks before launch day.</p></aside>
+  </div>
+</div>
+</section>
+
+<section id="media">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Security cams</div><h2>SINES Media Log</h2></div><p>This section is ready for industrial-visit videos, welcome-event highlights, and orientation memories once the final media is provided.</p></div>
+  <div class="grid g3">
+    <div class="placeholder reveal"><div><div class="big">🎥</div><b>Industrial Visit Videos</b><p>Add final video links here.</p></div></div>
+    <div class="placeholder reveal"><div><div class="big">🎬</div><b>Welcome Events</b><p>Add previous welcome-event highlights here.</p></div></div>
+    <div class="placeholder reveal"><div><div class="big">📸</div><b>Photo Gallery</b><p>Add official Orientation '26 photographs here.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section id="merch">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Supply bay</div><h2>SINES Merchandise</h2></div><p>A ready-to-fill section for merchandise images, prices, sizes, ordering, payment and collection information.</p></div>
+  <div class="grid g3">
+    <div class="placeholder reveal"><div><div class="big">👕</div><b>Apparel</b><p>Product image, sizes and price.</p></div></div>
+    <div class="placeholder reveal"><div><div class="big">🧢</div><b>Accessories</b><p>Caps, badges and other items.</p></div></div>
+    <div class="placeholder reveal"><div><div class="big">📦</div><b>Order Information</b><p>Order form, payment and collection details.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section id="support">
+<div class="wrap">
+  <div class="head reveal"><div><div class="kicker pixel">Comms channel</div><h2>Need Help? We've Got You.</h2></div><p>Starting something new can feel overwhelming. The orientation team is here to guide you through your first steps at SINES.</p></div>
+  <div class="grid g3">
+    <article class="card reveal"><div class="icon">📡</div><h3>Orientation Coordinator</h3><p>Contact details can be inserted once finalized.</p></article>
+    <article class="card reveal"><div class="icon">🧑‍🚀</div><h3>Student Representatives</h3><p>Names and contact channels can be added here.</p></article>
+    <article class="card reveal"><div class="icon">🏢</div><h3>Office Contact</h3><p>Official office contact details can be added here.</p></article>
+  </div>
+  <article class="card reveal" style="margin-top:22px;text-align:center;padding:42px"><span class="tag pixel">Final transmission</span><h2 style="font-size:clamp(2rem,4vw,3.4rem);margin-bottom:10px">See You Soon</h2><p style="max-width:760px;margin:auto">Your next chapter begins at SINES. We cannot wait to welcome you, hear your ideas, and see what you create.</p></article>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap footer"><div><div class="brand pixel"><span class="crewmark"></span>SINES Orientation '26</div><p>Welcome to the beginning of something exciting.</p></div><div class="status">Station systems online</div></div></footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="modalcontent"></div></div></div>
+
+<script>
+const menu=document.getElementById('menu'),navlinks=document.getElementById('navlinks');
+menu.addEventListener('click',()=>navlinks.classList.toggle('open'));
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const boxes=[...document.querySelectorAll('#tasklist input')];
+const saved=JSON.parse(localStorage.getItem('sines26tasks')||'[]');
+boxes.forEach((b,i)=>{b.checked=!!saved[i];b.closest('.task').classList.toggle('done',b.checked);b.addEventListener('change',updateTasks)});
+function updateTasks(){
+  const states=boxes.map(b=>b.checked);localStorage.setItem('sines26tasks',JSON.stringify(states));
+  boxes.forEach(b=>b.closest('.task').classList.toggle('done',b.checked));
+  const n=states.filter(Boolean).length,p=Math.round(n/boxes.length*100);
+  document.getElementById('ring').style.setProperty('--p',p);document.getElementById('pct').textContent=p+'%';
+  document.getElementById('msg').textContent=p===100?'All tasks complete. Crewmate ready for launch!':p>=50?'Good progress. Keep going!':'Complete your tasks before launch day.';
+} updateTasks();
+
+const ORIENTATION_DATE=""; // Example: 2026-09-12T09:00:00+05:00
+function tick(){
+  const ids=['days','hours','minutes','seconds'];
+  if(!ORIENTATION_DATE){ids.forEach(id=>document.getElementById(id).textContent='--');return}
+  const d=new Date(ORIENTATION_DATE)-new Date();if(d<=0){ids.forEach(id=>document.getElementById(id).textContent='00');return}
+  const vals=[Math.floor(d/86400000),Math.floor(d/3600000)%24,Math.floor(d/60000)%60,Math.floor(d/1000)%60];
+  vals.forEach((v,i)=>document.getElementById(ids[i]).textContent=String(v).padStart(2,'0'))
+} tick();setInterval(tick,1000);
+
+const modal=document.getElementById('modal'),modalcontent=document.getElementById('modalcontent');
+function openModal(type){
+ modalcontent.innerHTML=type==='mission'
+ ?`<span class="tag pixel">Mission Brief</span><h2>Welcome to SINES Station</h2><p style="color:#b7c7c9;line-height:1.7">Explore your academic home, learn the story of SINES, check your orientation schedule, complete your pre-arrival tasks, and return later for media, merchandise, and final contact details.</p>`
+ :`<span class="tag pixel">Countdown Setup</span><h2>Waiting for the final date</h2><p style="color:#b7c7c9;line-height:1.7">The source document currently lists “September XX, 2026.” Once the exact date is confirmed, replace the empty ORIENTATION_DATE value near the bottom of index.html with the final ISO date and time.</p>`;
+ modal.classList.add('open')
+}
+function closeModal(){modal.classList.remove('open')}
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body></html>
