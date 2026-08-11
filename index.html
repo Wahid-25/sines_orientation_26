@@ -84,56 +84,183 @@ footer{padding:46px 0 56px;border-top:1px solid #31515d55;background:#051017}.fo
 const BACKEND_URL="https://script.google.com/macros/s/AKfycbzFbZ7tYn6VIBIhSPWd5Hb6N52BSUZufZPRCV-WuTapo_IXBzttlDNz8yPYNm5Q3VbC/exec";
 const ORIENTATION_DATE="2026-09-02T09:00:00+05:00";
 
-menu.onclick=()=>links.classList.toggle("open");
-document.querySelectorAll(".links a").forEach(a=>a.onclick=()=>links.classList.remove("open"));
-document.querySelectorAll(".faqq").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
+// Always reference elements explicitly. This avoids collisions with browser globals
+// such as window.name, which was stopping the nomination form.
+const menuBtn = document.getElementById("menu");
+const linksEl = document.getElementById("links");
+const nominationFormEl = document.getElementById("nominationForm");
+const nameInput = document.getElementById("name");
+const genderInput = document.getElementById("gender");
+const formNoticeEl = document.getElementById("formNotice");
+const adminSection = document.getElementById("admin");
+const unlockBtn = document.getElementById("unlock");
+const adminKeyInput = document.getElementById("adminKey");
+const adminNoticeEl = document.getElementById("adminNotice");
+const adminPanelEl = document.getElementById("adminPanel");
+const spinBtn = document.getElementById("spin");
+const resetBtn = document.getElementById("reset");
+const boyWinnerEl = document.getElementById("boyWinner");
+const girlWinnerEl = document.getElementById("girlWinner");
+const dEl = document.getElementById("d");
+const hEl = document.getElementById("h");
+const mEl = document.getElementById("m");
+const sEl = document.getElementById("s");
 
-function notice(el,msg,type){el.className="notice "+type;el.textContent=msg}
-
-nominationForm.onsubmit=async e=>{
- e.preventDefault();
- const n=name.value.trim(),g=gender.value;
- if(!n||!g){notice(formNotice,"Please enter your name and select your gender.","err");return}
- if(!BACKEND_URL.startsWith("https://script.google.com/")){notice(formNotice,"Host backend is not connected yet.","err");return}
- const body=new URLSearchParams({action:"submit",name:n,gender:g,batch:"Bioinformatics 2026"});
- try{
-   await fetch(BACKEND_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body});
-   notice(formNotice,"Nomination submitted. See you on Orientation Day! 🚀","ok");
-   nominationForm.reset();
- }catch(e){notice(formNotice,"Could not submit right now. Please try again.","err")}
-};
-
-if(ORIENTATION_DATE){
- const tick=()=>{let x=new Date(ORIENTATION_DATE)-new Date();if(x<0)x=0;d.textContent=String(Math.floor(x/86400000)).padStart(2,"0");h.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");m.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");s.textContent=String(Math.floor(x/1000)%60).padStart(2,"0")};tick();setInterval(tick,1000)
+if (menuBtn && linksEl) {
+  menuBtn.addEventListener("click", () => linksEl.classList.toggle("open"));
+  document.querySelectorAll(".links a").forEach(a =>
+    a.addEventListener("click", () => linksEl.classList.remove("open"))
+  );
 }
 
-const p=new URLSearchParams(location.search);
-if(p.get("admin")==="1")admin.classList.add("show");
+document.querySelectorAll(".faqq").forEach(q =>
+  q.addEventListener("click", () => q.parentElement.classList.toggle("open"))
+);
+
+function notice(el,msg,type){
+  if(!el) return;
+  el.className="notice "+type;
+  el.textContent=msg;
+}
+
+if (nominationFormEl) {
+  nominationFormEl.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const n = nameInput.value.trim();
+    const g = genderInput.value;
+
+    if(!n || !g){
+      notice(formNoticeEl,"Please enter your name and select your gender.","err");
+      return;
+    }
+
+    if(!BACKEND_URL.startsWith("https://script.google.com/")){
+      notice(formNoticeEl,"Host backend is not connected yet.","err");
+      return;
+    }
+
+    const submitButton = nominationFormEl.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "SUBMITTING...";
+    }
+
+    const body = new URLSearchParams({
+      action:"submit",
+      name:n,
+      gender:g,
+      batch:"Bioinformatics 2026"
+    });
+
+    try {
+      await fetch(BACKEND_URL, {
+        method:"POST",
+        mode:"no-cors",
+        headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+        body:body.toString()
+      });
+
+      notice(formNoticeEl,"Nomination submitted. See you on Orientation Day! 🚀","ok");
+      nominationFormEl.reset();
+    } catch (err) {
+      console.error(err);
+      notice(formNoticeEl,"Could not submit right now. Please try again.","err");
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "SUBMIT NOMINATION";
+      }
+    }
+  });
+}
+
+if(ORIENTATION_DATE){
+  const tick=()=>{
+    let x=new Date(ORIENTATION_DATE)-new Date();
+    if(x<0)x=0;
+    if(dEl) dEl.textContent=String(Math.floor(x/86400000)).padStart(2,"0");
+    if(hEl) hEl.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");
+    if(mEl) mEl.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");
+    if(sEl) sEl.textContent=String(Math.floor(x/1000)%60).padStart(2,"0");
+  };
+  tick();
+  setInterval(tick,1000);
+}
+
+const params=new URLSearchParams(location.search);
+if(params.get("admin")==="1" && adminSection) adminSection.classList.add("show");
 let entries=[],key="";
 
-unlock.onclick=async()=>{
- if(!BACKEND_URL.startsWith("https://script.google.com/")){notice(adminNotice,"Add the backend URL inside index.html first.","err");return}
- key=adminKey.value.trim();if(!key){notice(adminNotice,"Enter your private host key.","err");return}
- try{
-  const r=await fetch(BACKEND_URL+"?action=list&key="+encodeURIComponent(key)+"&t="+Date.now());
-  const data=await r.json();
-  if(!data.ok){notice(adminNotice,data.error||"Access denied.","err");return}
-  entries=data.entries||[];adminPanel.classList.add("open");notice(adminNotice,entries.length+" nominations loaded.","ok")
- }catch(e){notice(adminNotice,"Could not connect to private nominations.","err")}
-};
+if (unlockBtn) {
+  unlockBtn.addEventListener("click", async () => {
+    if(!BACKEND_URL.startsWith("https://script.google.com/")){
+      notice(adminNoticeEl,"Add the backend URL inside index.html first.","err");
+      return;
+    }
+
+    key=adminKeyInput.value.trim();
+    if(!key){
+      notice(adminNoticeEl,"Enter your private host key.","err");
+      return;
+    }
+
+    try{
+      const r=await fetch(BACKEND_URL+"?action=list&key="+encodeURIComponent(key)+"&t="+Date.now());
+      const data=await r.json();
+      if(!data.ok){
+        notice(adminNoticeEl,data.error||"Access denied.","err");
+        return;
+      }
+      entries=data.entries||[];
+      adminPanelEl.classList.add("open");
+      notice(adminNoticeEl,entries.length+" nominations loaded.","ok");
+    }catch(err){
+      console.error(err);
+      notice(adminNoticeEl,"Could not connect to private nominations.","err");
+    }
+  });
+}
 
 function used(){return JSON.parse(localStorage.getItem("sines26used")||'{"boys":[],"girls":[]}')}
 function saveUsed(x){localStorage.setItem("sines26used",JSON.stringify(x))}
 function one(a){return a[Math.floor(Math.random()*a.length)]}
 
-spin.onclick=()=>{
- const u=used();
- const boys=entries.filter(x=>String(x.gender).toLowerCase()==="boy"&&!u.boys.includes(String(x.id)));
- const girls=entries.filter(x=>String(x.gender).toLowerCase()==="girl"&&!u.girls.includes(String(x.id)));
- if(!boys.length||!girls.length){notice(adminNotice,"No unused boy/girl pair is available. Reset previous picks to start again.","err");return}
- let i=0;const anim=setInterval(()=>{boyWinner.textContent=one(boys).name;girlWinner.textContent=one(girls).name;if(++i>=18){clearInterval(anim);const b=one(boys),g=one(girls);boyWinner.textContent=b.name;girlWinner.textContent=g.name;u.boys.push(String(b.id));u.girls.push(String(g.id));saveUsed(u);notice(adminNotice,"Crew selected! 🎉","ok")}},90)
-};
-reset.onclick=()=>{localStorage.removeItem("sines26used");notice(adminNotice,"Previous picks reset on this device.","ok")}
+if (spinBtn) {
+  spinBtn.addEventListener("click", () => {
+    const u=used();
+    const boys=entries.filter(x=>String(x.gender).toLowerCase()==="boy"&&!u.boys.includes(String(x.id)));
+    const girls=entries.filter(x=>String(x.gender).toLowerCase()==="girl"&&!u.girls.includes(String(x.id)));
+
+    if(!boys.length||!girls.length){
+      notice(adminNoticeEl,"No unused boy/girl pair is available. Reset previous picks to start again.","err");
+      return;
+    }
+
+    let i=0;
+    const anim=setInterval(()=>{
+      boyWinnerEl.textContent=one(boys).name;
+      girlWinnerEl.textContent=one(girls).name;
+      if(++i>=18){
+        clearInterval(anim);
+        const b=one(boys),g=one(girls);
+        boyWinnerEl.textContent=b.name;
+        girlWinnerEl.textContent=g.name;
+        u.boys.push(String(b.id));
+        u.girls.push(String(g.id));
+        saveUsed(u);
+        notice(adminNoticeEl,"Crew selected! 🎉","ok");
+      }
+    },90);
+  });
+}
+
+if (resetBtn) {
+  resetBtn.addEventListener("click",()=>{
+    localStorage.removeItem("sines26used");
+    notice(adminNoticeEl,"Previous picks reset on this device.","ok");
+  });
+}
 </script>
 </body>
 </html>
